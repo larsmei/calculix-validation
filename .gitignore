@@ -1,0 +1,26 @@
+# CalculiX solver output
+*.dat
+*.frd
+*.sta
+*.cvg
+*.12d
+*.ein
+*.fout
+*.equ
+*.nam
+*.msh
+*.fcv
+spooles.out
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# OS / editor
+.DS_Store
+*~
+*.swp
+.idea/
+.vscode/
