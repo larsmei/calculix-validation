@@ -1,0 +1,48 @@
+** Dickwandiges Rohr CAX8, a=50 b=100 p_i=10, ebene Dehnung
+** Sr(a)=-10 St(a)=16.6667 St(b)=6.6667
+** Ur(a)=4.5396825397e-03 Ur(b)=2.8888888889e-03
+*HEADING
+Lame thick cylinder CAX8 plane strain
+*NODE, NSET=Nall
+1,  50.,  0.
+2,  75.,  0.
+3, 100.,  0.
+4,  50., 10.
+5,  75., 10.
+6, 100., 10.
+7,  62.5, 0.
+8,  87.5, 0.
+9,  62.5,10.
+10, 87.5,10.
+11, 50.,  5.
+12, 75.,  5.
+13,100.,  5.
+14, 62.5, 5.
+15, 87.5, 5.
+*ELEMENT, TYPE=CAX8, ELSET=Eall
+1, 1,2,5,4,7,12,9,11
+2, 2,3,6,5,8,13,10,12
+*NSET, NSET=Nz0
+1,2,3,7,8
+*NSET, NSET=Nz1
+4,5,6,9,10
+*MATERIAL, NAME=Steel
+*ELASTIC
+210000., 0.3
+*SOLID SECTION, ELSET=Eall, MATERIAL=Steel
+*BOUNDARY
+Nz0, 2
+Nz1, 2
+*STEP
+*STATIC
+*DLOAD
+1, P4, 10.
+*NODE PRINT, NSET=Nall
+U
+*EL PRINT, ELSET=Eall
+S
+*NODE FILE
+U
+*EL FILE
+S
+*END STEP
