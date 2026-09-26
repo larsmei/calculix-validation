@@ -11,15 +11,15 @@ Stahl: E=210000, nu=0.3, rho=7.85e-9, alpha=1.2e-5.
 
 ## Voraussetzungen
 
-- CalculiX-Solver `ccx` im `PATH` (2.2x-Linie)
+- CalculiX-Solver `ccx` (2.2x-Linie), Pfad bekannt
 - Python 3.8+
 
 ```bash
 # Debian/Ubuntu
 sudo apt install calculix-ccx
+which ccx          # typisch /usr/bin/ccx
 
 # oder Binary von https://www.dhondt.de/
-export CCX=ccx
 ```
 
 ```bash
@@ -29,45 +29,52 @@ cd calculix-validation
 
 ## Testsuite ausführen
 
+`--ccx` / `-c` ist **Pflicht**: Pfad zum Solver-Binary. Relativer Pfad, absoluter Pfad oder Name im `PATH` sind erlaubt. Das Skript prüft, ob die Datei existiert und ausführbar ist.
+
 Gesamtlauf (analytisch + offiziell):
 
 ```bash
-python3 03_scripts/run_suite.py
+python3 03_scripts/run_suite.py --ccx /usr/bin/ccx
+python3 03_scripts/run_suite.py -c ccx
 ```
 
 Nur analytische Fälle (schnell, erster Check):
 
 ```bash
-python3 03_scripts/run_suite.py --analytical
+python3 03_scripts/run_suite.py --ccx /usr/bin/ccx --analytical
 ```
 
 Nur offizielle `.inp` / `.dat.ref`-Paare:
 
 ```bash
-python3 03_scripts/run_suite.py --official
+python3 03_scripts/run_suite.py --ccx /usr/bin/ccx --official
 ```
 
 Einzelnes Deck:
 
 ```bash
-python3 03_scripts/run_suite.py --case 01_uniaxial_c3d8
-python3 03_scripts/run_suite.py --case simplebeam
+python3 03_scripts/run_suite.py --ccx /usr/bin/ccx --case 01_uniaxial_c3d8
+python3 03_scripts/run_suite.py --ccx ./ccx --case simplebeam
 ```
+
+Ohne `--ccx` bricht das Skript mit einer kurzen Anleitung ab.
 
 | Flag | Bedeutung |
 |------|-----------|
-| `--ccx PATH` | Solver-Binary (sonst `$CCX` oder `ccx`) |
+| `-c`, `--ccx PATH` | **Pflicht.** Pfad zum ccx-Solver |
+| `--analytical` | nur analytische Decks |
+| `--official` | nur offizielle Verification-Examples |
+| `--case NAME` | einzelnes Deck (mehrfach möglich) |
 | `--workdir DIR` | Arbeitsverzeichnis für `.dat`/`.frd` (Default: `work/`) |
 | `--timeout SEC` | Timeout pro Job (Default: 120) |
 | `--rtol`, `--atol` | Toleranzen für den `.dat.ref`-Vergleich |
-| `--keep` | Solver-Ausgabe behalten |
 | `-q` | knappe Ausgabe |
 
 Exit-Code `0` wenn alle gewählten Fälle bestehen, sonst `1`.
 
 `ccx` erwartet den Jobnamen ohne `.inp`. Der Runner kopiert die Decks nach `work/` und ruft `ccx JOB` auf.
 
-Offizielle Beispiele werden beim ersten Lauf automatisch von
+Offizielle Beispiele werden beim ersten `--official`-Lauf automatisch von
 https://github.com/Dhondtguido/CalculiX geholt, falls sie lokal fehlen:
 
 ```bash
@@ -97,8 +104,6 @@ Patch-Tests (01–04, 06, 07, 11) müssen eng sitzen. Balken/Modal/3D: 2–5 %.
 
 Offiziell: Vergleich `.dat` gegen `.dat.ref`.
 Leere Referenzen gelten als bestanden, wenn ccx ohne Fehler endet.
-
-Katalog: `catalog.csv`.
 
 ## Lizenz
 
