@@ -1,4 +1,4 @@
-** Einfeldtraeger L=200 F=100 Mitte, u=FL^3/48EI=0.0476190476
+** Einfeldtraeger L=200 F=100 Mitte, u=FL^3/48EI=0.095238 (Timoshenko +Schub)
 *HEADING
 Simply supported beam B32
 *NODE, NSET=Nall

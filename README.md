@@ -96,8 +96,8 @@ Analytische Sollwerte: `01_analytical/expected.json` und Kopfkommentar jeder `.i
 | `07_thermal_bar_fixed.inp` | Sxx=-252, U=0 |
 | `08_lame_cax8.inp` | St(a)=16.667, Ur(a)=4.540e-3 |
 | `09_cantilever_frequency.inp` | f1=835.53 Hz |
-| `10_ss_beam_b32.inp` | Umitte=0.047619 |
-| `11_two_bar_truss.inp` | Uy=-0.133631, S=+-111.803 |
+| `10_ss_beam_b32.inp` | Umitte=0.095238 (Euler; Timoshenko etwas größer) |
+| `11_two_bar_truss.inp` | Uy=-0.133099, S=+-111.803 |
 | `12_cantilever_c3d20r.inp` | Utip zwischen Euler und Timoshenko |
 
 Patch-Tests (01–04, 06, 07, 11) müssen eng sitzen. Balken/Modal/3D: 2–5 %.

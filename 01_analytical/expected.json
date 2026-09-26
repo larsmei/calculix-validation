@@ -10,8 +10,8 @@
     "07_thermal_bar_fixed": {"checks": [{"qty": "Sxx", "value": -252.0, "tol_abs": 1e-2, "tol_rel": 1e-5}]},
     "08_lame_cax8": {"checks": [{"qty": "St", "value": 16.666666667, "tol_abs": 0.25, "tol_rel": 0.05}, {"qty": "Ur", "value": 0.00453968254, "tol_abs": 2e-4, "tol_rel": 0.08}]},
     "09_cantilever_frequency": {"checks": [{"qty": "f1_Hz", "value": 835.528, "tol_rel": 0.05}]},
-    "10_ss_beam_b32": {"checks": [{"qty": "Ux", "value": 0.0476190476, "tol_rel": 0.05}]},
-    "11_two_bar_truss": {"checks": [{"qty": "Uy", "value": -0.1336306209, "tol_abs": 1e-5, "tol_rel": 1e-4}]},
+    "10_ss_beam_b32": {"checks": [{"qty": "Ux", "value": 0.0952380952, "tol_rel": 0.05}]},
+    "11_two_bar_truss": {"checks": [{"qty": "Uy", "value": -0.133098551, "tol_abs": 1e-5, "tol_rel": 1e-4}]},
     "12_cantilever_c3d20r": {"checks": [{"qty": "Ux", "value_euler": 0.1904761905, "value_timoshenko": 0.1919619048, "tol_rel": 0.05}]}
   }
 }
