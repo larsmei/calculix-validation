@@ -1,0 +1,54 @@
+** Validierung: einachsiger Zug, 1x C3D8
+** Einheiten: mm, N, MPa
+** Wuerfel 10 x 10 x 10, E=210000, nu=0.3, sigma=100 MPa
+**
+** Analytisch:
+**   sigma_xx = 100
+**   sigma_yy = sigma_zz = 0
+**   u_x(x=10) = 4.7619047619e-03
+**   u_y(y=10) = -1.4285714286e-03
+**   u_z(z=10) = -1.4285714286e-03
+**
+*HEADING
+Uniaxial tension C3D8 cube
+*NODE, NSET=Nall
+1,  0.,  0.,  0.
+2, 10.,  0.,  0.
+3, 10., 10.,  0.
+4,  0., 10.,  0.
+5,  0.,  0., 10.
+6, 10.,  0., 10.
+7, 10., 10., 10.
+8,  0., 10., 10.
+*ELEMENT, TYPE=C3D8, ELSET=Eall
+1, 1,2,3,4,5,6,7,8
+*NSET, NSET=Nx0
+1,4,5,8
+*NSET, NSET=Ny0
+1,2,5,6
+*NSET, NSET=Nz0
+1,2,3,4
+*NSET, NSET=Nx1
+2,3,6,7
+*MATERIAL, NAME=Steel
+*ELASTIC
+210000., 0.3
+*SOLID SECTION, ELSET=Eall, MATERIAL=Steel
+*BOUNDARY
+Nx0, 1
+Ny0, 2
+Nz0, 3
+*STEP
+*STATIC
+** P4 = Flaeche x=10; negativer Druck = Zug
+*DLOAD
+1, P4, -100.
+*NODE PRINT, NSET=Nall
+U
+*EL PRINT, ELSET=Eall
+S, E
+*NODE FILE
+U
+*EL FILE
+S, E
+*END STEP

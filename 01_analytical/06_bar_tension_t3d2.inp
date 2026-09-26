@@ -1,0 +1,36 @@
+** Validierung: Zugstab T3D2
+** Einheiten: mm, N, MPa
+** L=1000, A=100, E=210000, F=21000 N
+**
+** Analytisch:
+**   u = F L / (A E) = 1.0
+**   sigma = F / A = 210.0
+**
+*HEADING
+Uniaxial bar T3D2
+*NODE, NSET=Nall
+1, 0., 0., 0.
+2, 1000., 0., 0.
+*ELEMENT, TYPE=T3D2, ELSET=Eall
+1, 1, 2
+*BOUNDARY
+1, 1, 3
+2, 2, 3
+*MATERIAL, NAME=Steel
+*ELASTIC
+210000., 0.3
+*SOLID SECTION, ELSET=Eall, MATERIAL=Steel
+100.
+*STEP
+*STATIC
+*CLOAD
+2, 1, 21000.
+*NODE PRINT, NSET=Nall
+U
+*EL PRINT, ELSET=Eall
+S, E
+*NODE FILE
+U
+*EL FILE
+S, E
+*END STEP
