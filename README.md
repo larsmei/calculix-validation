@@ -98,7 +98,7 @@ Analytische Sollwerte: `01_analytical/expected.json` und Kopfkommentar jeder `.i
 | `09_cantilever_frequency.inp` | f1=835.53 Hz |
 | `10_ss_beam_b32.inp` | Umitte=0.095238 (Euler; Timoshenko etwas größer) |
 | `11_two_bar_truss.inp` | Uy=-0.133099, S=+-111.803 |
-| `12_cantilever_c3d20r.inp` | Utip zwischen Euler und Timoshenko |
+| `12_cantilever_c3d20r.inp` | Utip nahe Euler 0.19048 (2×2×8 C3D20R, Toleranz 5 %; Timoshenko 0.19196) |
 
 Patch-Tests (01–04, 06, 07, 11) müssen eng sitzen. Balken/Modal/3D: 2–5 %.
 
