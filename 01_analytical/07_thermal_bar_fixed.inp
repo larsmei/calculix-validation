@@ -1,0 +1,53 @@
+** Eingespannter Stab, dT=100, alpha=1.2e-5, sigma_xx=-252, u=0
+*HEADING
+Fixed-end thermal bar
+*NODE, NSET=Nall
+1, 0., 0., 0.
+2, 50., 0., 0.
+3, 100., 0., 0.
+4, 0., 10., 0.
+5, 50., 10., 0.
+6, 100., 10., 0.
+7, 0., 0., 10.
+8, 50., 0., 10.
+9, 100., 0., 10.
+10, 0., 10., 10.
+11, 50., 10., 10.
+12, 100., 10., 10.
+*ELEMENT, TYPE=C3D8, ELSET=Eall
+1, 1,2,5,4,7,8,11,10
+2, 2,3,6,5,8,9,12,11
+*NSET, NSET=Nx0
+1,4,7,10
+*NSET, NSET=Nx1
+3,6,9,12
+*NSET, NSET=Ny0
+1,2,3,7,8,9
+*NSET, NSET=Nz0
+1,2,3,4,5,6
+*MATERIAL, NAME=Steel
+*ELASTIC
+210000., 0.3
+*EXPANSION
+1.2e-5
+*SOLID SECTION, ELSET=Eall, MATERIAL=Steel
+*BOUNDARY
+Nx0, 1
+Nx1, 1
+Ny0, 2
+Nz0, 3
+*INITIAL CONDITIONS, TYPE=TEMPERATURE
+Nall, 0.
+*STEP
+*STATIC
+*TEMPERATURE
+Nall, 100.
+*NODE PRINT, NSET=Nall
+U
+*EL PRINT, ELSET=Eall
+S, E, THE
+*NODE FILE
+U
+*EL FILE
+S, E
+*END STEP

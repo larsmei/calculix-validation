@@ -1,0 +1,32 @@
+** Zweibarsystem T3D2, F_y=-1000, u_y=-0.1336306209, sigma=+-111.80339887
+*HEADING
+Two-bar truss
+*NODE, NSET=Nall
+1, 0., 0., 0.
+2, 0., 100., 0.
+3, 100., 50., 0.
+*ELEMENT, TYPE=T3D2, ELSET=Eall
+1, 1, 3
+2, 2, 3
+*BOUNDARY
+1, 1, 3
+2, 1, 3
+3, 3
+*MATERIAL, NAME=Steel
+*ELASTIC
+210000., 0.3
+*SOLID SECTION, ELSET=Eall, MATERIAL=Steel
+10.
+*STEP
+*STATIC
+*CLOAD
+3, 2, -1000.
+*NODE PRINT, NSET=Nall
+U
+*EL PRINT, ELSET=Eall
+S
+*NODE FILE
+U
+*EL FILE
+S
+*END STEP

@@ -1,0 +1,28 @@
+** Eigenfrequenz Kragtraeger B32: f1=835.528 Hz, f2=5235.85 Hz, f3=14661.1 Hz
+*HEADING
+Cantilever eigenfrequency B32
+*NODE, NSET=Nall
+1, 0., 0., 0.
+2, 0., 0., 25.
+3, 0., 0., 50.
+4, 0., 0., 75.
+5, 0., 0., 100.
+*ELEMENT, TYPE=B32, ELSET=Eall
+1, 1, 2, 3
+2, 3, 4, 5
+*BOUNDARY
+1, 1, 6
+*MATERIAL, NAME=Steel
+*ELASTIC
+210000., 0.3
+*DENSITY
+7.85e-9
+*BEAM SECTION, ELSET=Eall, MATERIAL=Steel, SECTION=RECT
+10., 10.
+1., 0., 0.
+*STEP
+*FREQUENCY
+8
+*NODE FILE
+U
+*END STEP
